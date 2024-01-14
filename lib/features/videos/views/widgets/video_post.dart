@@ -20,10 +20,21 @@ class VideoPost extends StatefulWidget {
   State<VideoPost> createState() => _VideoPostState();
 }
 
-class _VideoPostState extends State<VideoPost> {
+class _VideoPostState extends State<VideoPost>
+    with SingleTickerProviderStateMixin {
   late final VideoPlayerController _videoPlayerController;
+  bool _isPaused = true;
   bool _seeMore = false;
   bool _volumeOff = false;
+
+  final Duration _animationDuration = const Duration(milliseconds: 300);
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    lowerBound: 1.0,
+    upperBound: 1.5,
+    value: 1.5,
+    duration: _animationDuration,
+  );
 
   @override
   void initState() {
@@ -40,7 +51,7 @@ class _VideoPostState extends State<VideoPost> {
       await _videoPlayerController.setVolume(0);
     }
     _videoPlayerController.addListener(_onVideoChange);
-    await _videoPlayerController.play();
+    // await _videoPlayerController.play();
     setState(() {});
   }
 
@@ -59,7 +70,18 @@ class _VideoPostState extends State<VideoPost> {
     });
   }
 
-  void _onTogglePause() {}
+  void _onTogglePause() async {
+    if (_videoPlayerController.value.isPlaying) {
+      await _videoPlayerController.pause();
+      _animationController.reverse();
+    } else {
+      await _videoPlayerController.play();
+      _animationController.forward();
+    }
+    setState(() {
+      _isPaused = !_isPaused;
+    });
+  }
 
   void _onVolumeTap() async {
     _volumeOff = !_volumeOff;
@@ -87,12 +109,27 @@ class _VideoPostState extends State<VideoPost> {
             onTap: _onTogglePause,
           ),
         ),
-        const Positioned.fill(
-          child: Center(
-            child: FaIcon(
-              FontAwesomeIcons.play,
-              size: Sizes.size32,
-              color: Colors.white,
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Center(
+              child: AnimatedBuilder(
+                animation: _animationController,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _animationController.value,
+                    child: child,
+                  );
+                },
+                child: AnimatedOpacity(
+                  opacity: _isPaused ? 1 : 0,
+                  duration: _animationDuration,
+                  child: const FaIcon(
+                    FontAwesomeIcons.play,
+                    size: Sizes.size32,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
