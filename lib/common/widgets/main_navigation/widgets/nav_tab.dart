@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktokclonepractice/constants/gaps.dart';
+import 'package:tiktokclonepractice/utils.dart';
 
 class NavTab extends StatelessWidget {
   final IconData icon;
@@ -26,7 +27,11 @@ class NavTab extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: selectedIndex == 0 ? Colors.black : Colors.white,
+            color: selectedIndex == 0
+                ? Colors.black
+                : isDarkMode(context)
+                    ? Colors.grey.shade900
+                    : Colors.white,
           ),
           child: AnimatedOpacity(
             opacity: isSelected ? 1 : 0.6,

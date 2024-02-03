@@ -1,17 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tiktokclonepractice/features/videos/repos/playback_config_rep.dart';
+import 'package:tiktokclonepractice/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktokclonepractice/router.dart';
 import 'package:tiktokclonepractice/utils.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final preferences = await SharedPreferences.getInstance();
+  final repository = PlaybackConfigRepository(preferences);
+  ///////////////////////////////////////////////////////
+  ///MVVM 사용시
+  // runApp(
+  //   MultiProvider(
+  //     providers: [
+  //       ChangeNotifierProvider(
+  //         create: (context) => PlaybackConfigViewModel(repository),
+  //       )
+  //     ],
+  //     child: const TikTokApp(),
+  //   ),
+  // );
+  ///////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////
+  ///Riverpod 사용시
+  runApp(
+    ProviderScope(
+      overrides: [
+        playbackConfigProvider.overrideWith(
+          () => PlaybackConfigViewModel(repository),
+        )
+      ],
+      child: const TikTokApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class TikTokApp extends StatelessWidget {
+  const TikTokApp({super.key});
   @override
   Widget build(BuildContext context) {
+    ///단일이면 ChangeNotifierProvider 바로 사용하면 됨
+    ////////////////////////////////////////////////////
+    ///여러개이면 MultiProvider
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider(
+    //       create: (context) => VideoConfig(),
+    //     )
+    //   ],
+    //   child: MaterialApp.router(),
+    //   )
+    ////////////////////////////////////////////////////
     return MaterialApp.router(
       routerConfig: router,
       title: 'TikTokClonePractice',
@@ -43,9 +84,13 @@ class MyApp extends StatelessWidget {
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.shade400),
           ),
+          suffixIconColor: Colors.grey.shade900,
         ),
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
+        ),
+        tabBarTheme: const TabBarTheme(
+          labelColor: Colors.black,
         ),
       ),
       darkTheme: ThemeData(
@@ -64,20 +109,24 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           elevation: 0,
         ),
-        inputDecorationTheme: const InputDecorationTheme(
-          enabledBorder: UnderlineInputBorder(
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               color: Colors.white,
             ),
           ),
-          focusedBorder: UnderlineInputBorder(
+          focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               color: Colors.white,
             ),
           ),
+          suffixIconColor: Colors.grey.shade400,
         ),
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
+        ),
+        tabBarTheme: const TabBarTheme(
+          labelColor: Colors.white,
         ),
       ),
     );
