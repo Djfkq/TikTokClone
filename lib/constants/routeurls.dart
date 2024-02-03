@@ -7,6 +7,8 @@ class RouteUrls {
   static const String birthdayScreen = "/birthday";
   static const String interestsScreen = "/interests";
   static const String mainnavigationScreen = "/home";
+  static const String chatScreen = "/chat";
+  static const String activityScreen = "/activity";
   
 }
 
@@ -19,4 +21,6 @@ class RouteNames {
   static const String birthdayScreen = "birthday";
   static const String interestsScreen = "interests";
   static const String mainnavigationScreen = "home";
+  static const String chatScreen = "chat";
+  static const String activityScreen = "activity";
 }

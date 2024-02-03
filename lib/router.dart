@@ -55,5 +55,6 @@ final router = GoRouter(
       name: RouteNames.mainnavigationScreen,
       builder: (context, state) => const MainNavigationScreen(),
     ),
+    
   ],
 );
