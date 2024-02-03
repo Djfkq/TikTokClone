@@ -4,6 +4,7 @@ import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
+import 'package:tiktokclonepractice/utils.dart';
 
 enum Direction { left, right }
 
@@ -38,7 +39,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
   }
 
   void _onEnterAppTap() {
-    context.go(RouteUrls.mainnavigationScreen);
+    if (_showingScreen == Screen.second) {
+      context.go(RouteUrls.mainnavigationScreen);
+    }
   }
 
   @override
@@ -88,6 +91,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
+          color: isDarkMode(context) ? Colors.black : null,
           child: AnimatedOpacity(
             opacity: _showingScreen == Screen.second ? 1 : 0,
             duration: const Duration(

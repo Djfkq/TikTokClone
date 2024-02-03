@@ -84,6 +84,7 @@ class TikTokApp extends StatelessWidget {
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.shade400),
           ),
+          prefixIconColor: Colors.grey.shade400,
           suffixIconColor: Colors.grey.shade900,
         ),
         textSelectionTheme: const TextSelectionThemeData(
@@ -91,6 +92,7 @@ class TikTokApp extends StatelessWidget {
         ),
         tabBarTheme: const TabBarTheme(
           labelColor: Colors.black,
+          indicatorColor: Colors.black,
         ),
       ),
       darkTheme: ThemeData(
@@ -120,6 +122,7 @@ class TikTokApp extends StatelessWidget {
               color: Colors.white,
             ),
           ),
+          prefixIconColor: Colors.white,
           suffixIconColor: Colors.grey.shade400,
         ),
         textSelectionTheme: const TextSelectionThemeData(
@@ -127,6 +130,7 @@ class TikTokApp extends StatelessWidget {
         ),
         tabBarTheme: const TabBarTheme(
           labelColor: Colors.white,
+          indicatorColor: Colors.white,
         ),
       ),
     );

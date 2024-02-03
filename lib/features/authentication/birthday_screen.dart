@@ -83,7 +83,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             ),
             Gaps.v16,
             FormButton(
-              disabled: true,
+              disabled: false,
               text: "Next",
               onTap: onNextTap,
             )
@@ -93,11 +93,17 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
       bottomNavigationBar: BottomAppBar(
         height: 300,
         child: SizedBox(
-          child: CupertinoDatePicker(
-            onDateTimeChanged: _setTextFieldDate,
-            mode: CupertinoDatePickerMode.date,
-            maximumDate: DateTime(initialDate.year - 10),
-            initialDateTime: DateTime(initialDate.year - 10),
+          child: CupertinoTheme(
+            data: CupertinoThemeData(
+              brightness:
+                  isDarkMode(context) ? Brightness.dark : Brightness.light,
+            ),
+            child: CupertinoDatePicker(
+              onDateTimeChanged: _setTextFieldDate,
+              mode: CupertinoDatePickerMode.date,
+              maximumDate: DateTime(initialDate.year - 10),
+              initialDateTime: DateTime(initialDate.year - 10),
+            ),
           ),
         ),
       ),
