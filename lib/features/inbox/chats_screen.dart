@@ -3,14 +3,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/inbox/chat_detail_screen.dart';
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+class ChatsScreen extends StatefulWidget {
+  const ChatsScreen({super.key});
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
+  State<ChatsScreen> createState() => _ChatsScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatsScreenState extends State<ChatsScreen> {
   final GlobalKey<AnimatedListState> _key = GlobalKey<AnimatedListState>();
 
   final Duration _duration = const Duration(milliseconds: 300);

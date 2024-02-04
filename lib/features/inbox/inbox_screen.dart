@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/inbox/activity_screen.dart';
-import 'package:tiktokclonepractice/features/inbox/chat_screen.dart';
+import 'package:tiktokclonepractice/features/inbox/chats_screen.dart';
 
 class InBoxScreen extends StatelessWidget {
   const InBoxScreen({super.key});
@@ -12,7 +12,7 @@ class InBoxScreen extends StatelessWidget {
   void _onDmPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const ChatScreen(),
+        builder: (context) => const ChatsScreen(),
       ),
     );
     // context.push(RouteUrls.chatScreen);
