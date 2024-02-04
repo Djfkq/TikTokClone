@@ -47,7 +47,9 @@ class _ChatScreenState extends State<ChatScreen> {
   void _onChatTap(BuildContext context, int index) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const ChatDetailScreen(),
+        builder: (context) => ChatDetailScreen(
+          chatId: "$index",
+        ),
       ),
     );
   }
