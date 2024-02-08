@@ -3,6 +3,7 @@ import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/onboarding/tutorial_screen.dart';
 import 'package:tiktokclonepractice/features/onboarding/widgets/interest_button.dart';
+import 'package:tiktokclonepractice/utils.dart';
 
 class InterestsScreen extends StatefulWidget {
   const InterestsScreen({super.key});
@@ -147,19 +148,18 @@ class _InterestsScreenState extends State<InterestsScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        color: isDarkMode(context) ? Colors.black : Colors.white,
         elevation: 2,
         child: Padding(
-          padding: const EdgeInsets.only(
-            bottom: Sizes.size48,
-            top: Sizes.size16,
-            left: Sizes.size24,
-            right: Sizes.size24,
+          padding: const EdgeInsets.symmetric(
+            vertical: Sizes.size2,
+            horizontal: Sizes.size2,
           ),
           child: GestureDetector(
             onTap: _onNextTap,
             child: Container(
               padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size20,
+                vertical: Sizes.size10,
               ),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
@@ -169,6 +169,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: Sizes.size16,
+                  color: Colors.white,
                 ),
               ),
             ),

@@ -6,6 +6,7 @@ import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/auth_button.dart';
+import 'package:tiktokclonepractice/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -145,6 +146,7 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
+            color: isDarkMode(context) ? Colors.black : Colors.white,
             elevation: 1,
             child: Padding(
               padding: const EdgeInsets.symmetric(

@@ -53,7 +53,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: _selectedIndex == 0 ? Colors.black : null,
       body: Stack(
         children: [
@@ -82,7 +82,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         color: _selectedIndex == 0 ? Colors.black : null,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.size12,
+            vertical: Sizes.size2,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
