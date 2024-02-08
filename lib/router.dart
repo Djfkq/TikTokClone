@@ -10,7 +10,7 @@ import 'package:tiktokclonepractice/features/authentication/username_screen.dart
 import 'package:tiktokclonepractice/features/onboarding/interests_screen.dart';
 
 final router = GoRouter(
-  initialLocation: RouteUrls.mainnavigationScreen,
+  initialLocation: RouteUrls.signupScreen,
   routes: [
     GoRoute(
       path: RouteUrls.signupScreen,
@@ -55,6 +55,5 @@ final router = GoRouter(
       name: RouteNames.mainnavigationScreen,
       builder: (context, state) => const MainNavigationScreen(),
     ),
-    
   ],
 );
