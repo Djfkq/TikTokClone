@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tiktokclonepractice/common/widgets/darkmode_configuration/darkmode_config.dart';
+import 'package:tiktokclonepractice/features/settings/settings_config.dart';
 import 'package:tiktokclonepractice/features/videos/repos/playback_config_rep.dart';
 import 'package:tiktokclonepractice/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktokclonepractice/router.dart';
 import 'package:tiktokclonepractice/utils.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,10 +41,20 @@ void main() async {
   );
 }
 
-class TikTokApp extends StatelessWidget {
+class TikTokApp extends StatefulWidget {
   const TikTokApp({super.key});
+
+  @override
+  State<TikTokApp> createState() => _TikTokAppState();
+}
+
+class _TikTokAppState extends State<TikTokApp> {
   @override
   Widget build(BuildContext context) {
+    darkModeConfig.addListener(() {
+      setState(() {});
+    });
+
     ///단일이면 ChangeNotifierProvider 바로 사용하면 됨
     ////////////////////////////////////////////////////
     ///여러개이면 MultiProvider
@@ -58,7 +72,6 @@ class TikTokApp extends StatelessWidget {
       title: 'TikTokClonePractice',
       debugShowCheckedModeBanner: false,
       themeMode: isDarkMode(context) ? ThemeMode.dark : ThemeMode.light,
-      // themeMode: darkModeConfig.value ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         primaryColor: const Color(0xFFE9435A),
         textTheme: Typography.blackMountainView,
@@ -94,7 +107,16 @@ class TikTokApp extends StatelessWidget {
           labelColor: Colors.black,
           indicatorColor: Colors.black,
         ),
-        listTileTheme: const ListTileThemeData(
+        listTileTheme: ListTileThemeData(
+          leadingAndTrailingTextStyle: const TextStyle(
+            color: Colors.black,
+          ),
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+          ),
+          subtitleTextStyle: TextStyle(
+            color: Colors.grey.shade600,
+          ),
           iconColor: Colors.black,
         ),
       ),
@@ -136,6 +158,15 @@ class TikTokApp extends StatelessWidget {
           indicatorColor: Colors.white,
         ),
         listTileTheme: const ListTileThemeData(
+          leadingAndTrailingTextStyle: TextStyle(
+            color: Colors.white,
+          ),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+          ),
+          subtitleTextStyle: TextStyle(
+            color: Colors.white60,
+          ),
           iconColor: Colors.white,
         ),
       ),

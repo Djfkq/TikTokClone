@@ -9,6 +9,8 @@ class RouteUrls {
   static const String mainnavigationScreen = "/home";
   static const String chatScreen = "/chat";
   static const String activityScreen = "/activity";
+  static const String settingScreen = "/setting";
+  static const String videorecordingScreen = "/postvideo";
   
 }
 
@@ -23,4 +25,6 @@ class RouteNames {
   static const String mainnavigationScreen = "home";
   static const String chatScreen = "chat";
   static const String activityScreen = "activity";
+  static const String settingScreen = "setting";
+  static const String videorecordingScreen = "postvideo";
 }

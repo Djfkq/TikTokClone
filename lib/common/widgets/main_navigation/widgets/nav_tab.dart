@@ -31,7 +31,7 @@ class NavTab extends StatelessWidget {
                 ? Colors.black
                 : isDarkMode(context)
                     ? Colors.grey.shade800
-                    : Colors.grey.shade200,
+                    : Colors.grey.shade300,
           ),
           child: AnimatedOpacity(
             opacity: isSelected ? 1 : 0.6,

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktokclonepractice/common/widgets/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktokclonepractice/common/widgets/main_navigation/widgets/post_video_button.dart';
 import 'package:tiktokclonepractice/constants/gaps.dart';
+import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/discover/discover_screen.dart';
 import 'package:tiktokclonepractice/features/inbox/inbox_screen.dart';
@@ -48,6 +51,22 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onPostVideoButtonTap() {
+    ///////////////////////////////////////////
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => Scaffold(
+    //       appBar: AppBar(
+    //         title: const Text("Record Video"),
+    //       ),
+    //     ),
+    //     // fullscreenDialog: true,
+    //   ),
+    // );
+    ////////////////////////////////////////////
+    context.pushNamed(RouteNames.videorecordingScreen);
   }
 
   @override
@@ -105,7 +124,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 onTap: () => _onTap(1),
               ),
               Gaps.h24,
-              const PostVideoButton(),
+              GestureDetector(
+                  onTap: _onPostVideoButtonTap,
+                  child: PostVideoButton(inverted: _selectedIndex != 0)),
               Gaps.h24,
               NavTab(
                 icon: FontAwesomeIcons.message,

@@ -8,6 +8,9 @@ import 'package:tiktokclonepractice/features/authentication/password_screen.dart
 import 'package:tiktokclonepractice/features/authentication/sign_up_screen.dart';
 import 'package:tiktokclonepractice/features/authentication/username_screen.dart';
 import 'package:tiktokclonepractice/features/onboarding/interests_screen.dart';
+import 'package:tiktokclonepractice/features/settings/settings_screen.dart';
+import 'package:tiktokclonepractice/features/videos/views/video_recording_screen.dart';
+import 'package:tiktokclonepractice/features/videos/views/widgets/video_button.dart';
 
 final router = GoRouter(
   initialLocation: RouteUrls.mainnavigationScreen,
@@ -54,6 +57,16 @@ final router = GoRouter(
       path: RouteUrls.mainnavigationScreen,
       name: RouteNames.mainnavigationScreen,
       builder: (context, state) => const MainNavigationScreen(),
+    ),
+    GoRoute(
+      path: RouteUrls.settingScreen,
+      name: RouteNames.settingScreen,
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: RouteUrls.videorecordingScreen,
+      name: RouteNames.videorecordingScreen,
+      builder: (context, state) => const VideoRecordingScreen(),
     ),
   ],
 );
