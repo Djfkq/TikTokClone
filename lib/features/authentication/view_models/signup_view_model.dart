@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/features/authentication/repos/authentication_repo.dart';
+import 'package:tiktokclonepractice/features/users/view_models/users_view_model.dart';
 import 'package:tiktokclonepractice/utils.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +18,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
   Future<void> signUp(BuildContext context) async {
     state = const AsyncValue.loading();
     final form = ref.read(signUpForm);
+    final users = ref.read(usersProvider.notifier);
     ///////////////////////////////////////////////////////////////////////////
     // await _authRepo.signUp(form["email"], form["password"]);
     // state = const AsyncValue.data(null);
@@ -24,10 +26,13 @@ class SignUpViewModel extends AsyncNotifier<void> {
     ///위의 두줄을 아래 guard하나로 됨
     ///(함수 실행시 에러발생하면 에러내용을 state에 넣고, 아니면 결과를 state에 넣음)
     state = await AsyncValue.guard(
-      () async => await _authRepo.emailSignUp(
-        form["email"],
-        form["password"],
-      ),
+      () async {
+        final userCredential = await _authRepo.emailSignUp(
+          form["email"],
+          form["password"],
+        );
+        await users.createAccount(userCredential);
+      },
     );
     if (state.hasError) {
       showFirebaseErrorSnack(
