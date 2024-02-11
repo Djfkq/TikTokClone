@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
+import 'package:tiktokclonepractice/features/authentication/password_screen.dart';
+import 'package:tiktokclonepractice/features/authentication/view_models/signup_view_model.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/form_button.dart';
 
 class EmailScreenArgs {
@@ -12,7 +15,7 @@ class EmailScreenArgs {
   });
 }
 
-class EmailScreen extends StatefulWidget {
+class EmailScreen extends ConsumerStatefulWidget {
   final String username;
   const EmailScreen({
     super.key,
@@ -20,10 +23,10 @@ class EmailScreen extends StatefulWidget {
   });
 
   @override
-  State<EmailScreen> createState() => _EmailScreenState();
+  ConsumerState<EmailScreen> createState() => _EmailScreenState();
 }
 
-class _EmailScreenState extends State<EmailScreen> {
+class _EmailScreenState extends ConsumerState<EmailScreen> {
   final TextEditingController _emailController = TextEditingController();
   String _email = "";
 
@@ -43,9 +46,17 @@ class _EmailScreenState extends State<EmailScreen> {
 
   void _onSubmit(BuildContext context) {
     if (_email.isEmpty || _isEmailValid() != null) return;
-    context.pushNamed(
-      RouteNames.passwordScreen,
+    ref.read(signUpForm.notifier).state = {
+      "email": _email,
+    };
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const PasswordScreen(),
+      ),
     );
+    // context.pushNamed(
+    //   RouteNames.passwordScreen,
+    // );
   }
 
   void _onScaffoldTap() {
@@ -101,7 +112,6 @@ class _EmailScreenState extends State<EmailScreen> {
                   hintText: "Email",
                   errorText: _isEmailValid(),
                 ),
-                
               ),
               Gaps.v16,
               FormButton(

@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
+import 'package:tiktokclonepractice/features/authentication/birthday_screen.dart';
+import 'package:tiktokclonepractice/features/authentication/view_models/signup_view_model.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/form_button.dart';
 import 'package:tiktokclonepractice/utils.dart';
 
-class PasswordScreen extends StatefulWidget {
+class PasswordScreen extends ConsumerStatefulWidget {
   const PasswordScreen({
     super.key,
   });
 
   @override
-  State<PasswordScreen> createState() => _PasswordScreenState();
+  ConsumerState<PasswordScreen> createState() => _PasswordScreenState();
 }
 
-class _PasswordScreenState extends State<PasswordScreen> {
+class _PasswordScreenState extends ConsumerState<PasswordScreen> {
   final TextEditingController _passwordController = TextEditingController();
   String _password = "";
   bool _obscureText = true;
@@ -37,9 +40,19 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
   void _onSubmit(BuildContext context) {
     if (_password.isEmpty || !_isPasswordValid()) return;
-    context.pushNamed(
-      RouteNames.birthdayScreen,
+    final state = ref.read(signUpForm.notifier).state;
+    ref.read(signUpForm.notifier).state = {
+      ...state,
+      "password": _password,
+    };
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const BirthdayScreen(),
+      ),
     );
+    // context.pushNamed(
+    //   RouteNames.birthdayScreen,
+    // );
   }
 
   void _onScaffoldTap() {

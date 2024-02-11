@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
+import 'package:tiktokclonepractice/features/authentication/username_screen.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/auth_button.dart';
 import 'package:tiktokclonepractice/generated/l10n.dart';
 import 'package:tiktokclonepractice/utils.dart';
@@ -52,7 +53,14 @@ class SignUpScreen extends StatelessWidget {
 
     // );
     /////////////////////////////////////////////////////////
-    context.pushNamed(RouteNames.usernameScreen);
+    // context.pushNamed(RouteNames.usernameScreen);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => UsernameScreen(),
+      ),
+    );
   }
 
   @override

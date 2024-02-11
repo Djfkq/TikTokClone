@@ -33,15 +33,45 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
   void onNextTap(BuildContext context) {
     if (_username.isNotEmpty) {
-      context.pushNamed(RouteNames.emailScreen,
-          extra: EmailScreenArgs(username: _username));
+      ///////////////////////////////////////////
+      ///1.기본
+      // Navigator.of(context).push(
+      //   MaterialPageRoute(
+      //     builder: (context) => EmailScreen(),
+      //   ),
+      // );
+      ///////////////////////////////////////////
+      ///2. pushNamed, username 전달
+      // Navigator.of(context).pushNamed(
+      //   RouteNames.emailScreen,
+      //   arguments: EmailScreenArgs(username: _username),
+      // );
+      ///////////////////////////////////////////
+      //////3.extra로 변수 전달
+      // context.push(
+      //   RouteUrls.emailScreen,
+      //   extra: EmailScreenArgs(username: _username),
+      // );
+      ///////////////////////////////////////////
+      ///////////////////////////////////////////
+      //////4.name 사용
+      // context.pushNamed(
+      //   RouteNames.emailScreen,
+      //   extra: EmailScreenArgs(username: _username),
+      // );
+      //////////////////////////////////////////////////////
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => EmailScreen(username: _username),
+        ),
+      );
     }
 
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(
-    //     builder: (context) => EmailScreen(username: _username),
-    //   ),
-    // );
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => EmailScreen(username: _username),
+      ),
+    );
   }
 
   @override
