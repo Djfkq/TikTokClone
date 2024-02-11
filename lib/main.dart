@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,6 +72,16 @@ class _TikTokAppState extends State<TikTokApp> {
       routerConfig: router,
       title: 'TikTokClonePractice',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale("en"),
+        Locale("ko"),
+        Locale("es"),
+      ],
       themeMode: isDarkMode(context) ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         primaryColor: const Color(0xFFE9435A),

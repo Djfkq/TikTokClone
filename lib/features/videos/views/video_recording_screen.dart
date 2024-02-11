@@ -23,6 +23,9 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   bool _hasPermission = false;
   bool _isSelfieMode = false;
+  late double _minZoomLevel;
+  late double _maxZoomLevel;
+  final double _currentZoomLevel = 1.0;
 
   late CameraController _cameraController;
   late FlashMode _falshMode;
@@ -79,6 +82,9 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     // await _cameraController.prepareForVideoRecording();   //iOS
 
     _falshMode = _cameraController.value.flashMode;
+
+    _minZoomLevel = await _cameraController.getMinZoomLevel();
+    _maxZoomLevel = await _cameraController.getMaxZoomLevel();
   }
 
   Future<void> toggleSelfieMode() async {
@@ -150,7 +156,21 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     }
   }
 
-  Future<void> _zoomRecording(DragUpdateDetails details) async {}
+  Future<void> _zoomRecording(LongPressMoveUpdateDetails details) async {
+    print("zoom");
+
+    // final dy = details.localPosition.dy;
+    // if (dy >= 0) {
+    //   if (_minZoomLevel > _currentZoomLevel + (-dy * 0.05)) return;
+    //   _cameraController.setZoomLevel(_currentZoomLevel + (-dy * 0.05));
+    // } else {
+    //   if (_maxZoomLevel < _currentZoomLevel + (-dy * 0.005)) return;
+    //   _cameraController.setZoomLevel(_currentZoomLevel + (-dy * 0.005));
+    // }
+
+    await _cameraController.setZoomLevel(5.0);
+    setState(() {});
+  }
 
   @override
   void initState() {
@@ -306,7 +326,8 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                         GestureDetector(
                           onTapDown: _startRecording,
                           onTapUp: (details) => _stopRecording(),
-                          onVerticalDragUpdate: _zoomRecording,
+                           onLongPressMoveUpdate: _zoomRecording,
+                          // onVerticalDragUpdate: _zoomRecording,
                           child: ScaleTransition(
                             scale: _buttonAnimation,
                             child: Stack(
