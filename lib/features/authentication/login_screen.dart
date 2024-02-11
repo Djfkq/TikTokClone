@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/authentication/login_form_screen.dart';
+import 'package:tiktokclonepractice/features/authentication/view_models/social_auth_view_model.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/auth_button.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   void _onSignupTap(BuildContext context) {
@@ -22,7 +24,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return OrientationBuilder(
       builder: (context, orientation) {
         return Scaffold(
@@ -64,10 +66,12 @@ class LoginScreen extends StatelessWidget {
                     Gaps.v16,
                     AuthButton(
                       icon: const FaIcon(
-                        FontAwesomeIcons.apple,
+                        FontAwesomeIcons.github,
                       ),
-                      text: "Continue with Facebook",
-                      onTap: (context) {},
+                      text: "Continue with Github",
+                      onTap: (context) {
+                        ref.read(socialAuthProvider.notifier).githubSignIn(context);
+                      },
                     ),
                   ],
                   if (orientation == Orientation.landscape)

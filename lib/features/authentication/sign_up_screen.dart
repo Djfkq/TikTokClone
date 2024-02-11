@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,11 +7,12 @@ import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/authentication/username_screen.dart';
+import 'package:tiktokclonepractice/features/authentication/view_models/social_auth_view_model.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/auth_button.dart';
 import 'package:tiktokclonepractice/generated/l10n.dart';
 import 'package:tiktokclonepractice/utils.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends ConsumerWidget {
   const SignUpScreen({super.key});
 
   void _onLoginTap(BuildContext context) async {
@@ -64,7 +66,7 @@ class SignUpScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // print(Localizations.localeOf(context));
     return OrientationBuilder(
       builder: (context, orientation) {
@@ -107,24 +109,26 @@ class SignUpScreen extends StatelessWidget {
                     Gaps.v16,
                     AuthButton(
                       icon: const FaIcon(
-                        FontAwesomeIcons.apple,
+                        FontAwesomeIcons.facebook,
                       ),
                       text: "Continue with Facebook",
                       onTap: (context) {},
                     ),
                     AuthButton(
                       icon: const FaIcon(
-                        FontAwesomeIcons.gamepad,
+                        FontAwesomeIcons.apple,
                       ),
                       text: S.of(context).appleButton,
                       onTap: (context) {},
                     ),
                     AuthButton(
                       icon: const FaIcon(
-                        FontAwesomeIcons.gamepad,
+                        FontAwesomeIcons.github,
                       ),
-                      text: "Continue with Google",
-                      onTap: (context) {},
+                      text: "Continue with Github",
+                      onTap: (context) {
+                        ref.read(socialAuthProvider.notifier).githubSignIn(context);
+                      },
                     ),
                   ],
                   if (orientation == Orientation.landscape)
