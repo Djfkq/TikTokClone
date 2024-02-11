@@ -20,7 +20,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
     ///위의 두줄을 아래 guard하나로 됨
     ///(함수 실행시 에러발생하면 에러내용을 state에 넣고, 아니면 결과를 state에 넣음)
     state = await AsyncValue.guard(
-      () async => await _authRepo.signUp(
+      () async => await _authRepo.emailSignUp(
         form["email"],
         form["password"],
       ),

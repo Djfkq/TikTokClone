@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktokclonepractice/common/widgets/darkmode_configuration/darkmode_config.dart';
 import 'package:tiktokclonepractice/common/widgets/video_configuration/video_config.dart';
+import 'package:tiktokclonepractice/constants/routeurls.dart';
+import 'package:tiktokclonepractice/features/authentication/repos/authentication_repo.dart';
 import 'package:tiktokclonepractice/features/settings/settings_config.dart';
 import 'package:tiktokclonepractice/features/videos/view_models/playback_config_vm.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -151,7 +154,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         ),
                       ),
                       CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () {
+                          ref.read(authRepo).signOut();
+                          context.go(RouteUrls.signupScreen);
+                        },
                         isDestructiveAction: true,
                         child: const Text("Yes"),
                       ),
@@ -344,14 +350,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 if (kDebugMode) {
                   print(date);
                 }
-      
+
                 final time = await showTimePicker(
                     context: context, initialTime: TimeOfDay.now());
                 if (kDebugMode) {
                   print(time);
                 }
-      
-                
+
                 final booking = await showDateRangePicker(
                   context: context,
                   builder: (context, child) {
@@ -379,7 +384,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               onTap: () => showAboutDialog(
                 context: context,
                 applicationVersion: "1.0",
-                applicationLegalese: "All rights reserved. Please don't copy me",
+                applicationLegalese:
+                    "All rights reserved. Please don't copy me",
               ),
               title: const Text(
                 "About",

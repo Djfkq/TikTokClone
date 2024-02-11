@@ -16,6 +16,7 @@ import 'package:tiktokclonepractice/features/videos/views/widgets/video_button.d
 
 final routerProvider = Provider(
   (ref) {
+    // ref.watch(authState);
     return GoRouter(
       initialLocation: RouteUrls.mainnavigationScreen,
       redirect: (context, state) {
