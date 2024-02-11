@@ -7,10 +7,10 @@ import 'package:tiktokclonepractice/common/widgets/darkmode_configuration/darkmo
 import 'package:tiktokclonepractice/features/settings/settings_config.dart';
 import 'package:tiktokclonepractice/features/videos/repos/playback_config_rep.dart';
 import 'package:tiktokclonepractice/features/videos/view_models/playback_config_vm.dart';
+import 'package:tiktokclonepractice/generated/l10n.dart';
 import 'package:tiktokclonepractice/router.dart';
 import 'package:tiktokclonepractice/utils.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,8 +73,13 @@ class _TikTokAppState extends State<TikTokApp> {
       routerConfig: router,
       title: 'TikTokClonePractice',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        S.delegate,
+      ],
+      supportedLocales: const [Locale("en"), Locale("ko")],
       themeMode: isDarkMode(context) ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         primaryColor: const Color(0xFFE9435A),

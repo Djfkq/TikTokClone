@@ -6,8 +6,8 @@ import 'package:tiktokclonepractice/constants/gaps.dart';
 import 'package:tiktokclonepractice/constants/routeurls.dart';
 import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/authentication/widgets/auth_button.dart';
+import 'package:tiktokclonepractice/generated/l10n.dart';
 import 'package:tiktokclonepractice/utils.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -70,18 +70,18 @@ class SignUpScreen extends StatelessWidget {
                 children: [
                   Gaps.v80,
                   Text(
-                    AppLocalizations.of(context)!.signUpTitle("TikTok!!!!"),
+                    S.of(context).signUpTitle("TikTok"),
                     style: GoogleFonts.abrilFatface(
                       fontSize: Sizes.size24,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Gaps.v20,
-                  const Opacity(
+                  Opacity(
                     opacity: 0.7,
                     child: Text(
-                      "Create a profile, follow otehr accounts, make your own videos, and more.",
-                      style: TextStyle(
+                      S.of(context).SignUpSubtitle,
+                      style: const TextStyle(
                         fontSize: Sizes.size16,
                       ),
                       textAlign: TextAlign.center,
@@ -93,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
                       icon: const FaIcon(
                         FontAwesomeIcons.solidUser,
                       ),
-                      text: "Use email & password",
+                      text: S.of(context).emailPasswordButton,
                       onTap: _onEmailTap,
                     ),
                     Gaps.v16,
@@ -108,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                       icon: const FaIcon(
                         FontAwesomeIcons.gamepad,
                       ),
-                      text: "Continue with Apple",
+                      text: S.of(context).appleButton,
                       onTap: (context) {},
                     ),
                     AuthButton(
@@ -127,7 +127,7 @@ class SignUpScreen extends StatelessWidget {
                             icon: const FaIcon(
                               FontAwesomeIcons.solidUser,
                             ),
-                            text: "Use email & password",
+                            text: S.of(context).emailPasswordButton,
                             onTap: _onEmailTap,
                           ),
                         ),
@@ -137,7 +137,7 @@ class SignUpScreen extends StatelessWidget {
                             icon: const FaIcon(
                               FontAwesomeIcons.apple,
                             ),
-                            text: "Continue with Facebook",
+                            text: S.of(context).appleButton,
                             onTap: (context) {},
                           ),
                         ),
@@ -157,15 +157,15 @@ class SignUpScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Already have an account?",
-                    style: TextStyle(),
+                  Text(
+                    S.of(context).alreadyHaveAnAccount,
+                    style: const TextStyle(),
                   ),
                   Gaps.h5,
                   GestureDetector(
                     onTap: () => _onLoginTap(context),
                     child: Text(
-                      "Login",
+                      S.of(context).login,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w600,
