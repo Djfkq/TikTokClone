@@ -50,14 +50,14 @@ void main() async {
   );
 }
 
-class TikTokApp extends StatefulWidget {
+class TikTokApp extends ConsumerStatefulWidget {
   const TikTokApp({super.key});
 
   @override
-  State<TikTokApp> createState() => _TikTokAppState();
+  ConsumerState<TikTokApp> createState() => _TikTokAppState();
 }
 
-class _TikTokAppState extends State<TikTokApp> {
+class _TikTokAppState extends ConsumerState<TikTokApp> {
   @override
   Widget build(BuildContext context) {
     darkModeConfig.addListener(() {
@@ -78,7 +78,7 @@ class _TikTokAppState extends State<TikTokApp> {
     ////////////////////////////////////////////////////
     S.load(const Locale("en"));
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
       title: 'TikTokClonePractice',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
