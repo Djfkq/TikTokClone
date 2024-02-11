@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +8,7 @@ import 'package:tiktokclonepractice/common/widgets/darkmode_configuration/darkmo
 import 'package:tiktokclonepractice/features/settings/settings_config.dart';
 import 'package:tiktokclonepractice/features/videos/repos/playback_config_rep.dart';
 import 'package:tiktokclonepractice/features/videos/view_models/playback_config_vm.dart';
+import 'package:tiktokclonepractice/firebase_options.dart';
 import 'package:tiktokclonepractice/generated/l10n.dart';
 import 'package:tiktokclonepractice/router.dart';
 import 'package:tiktokclonepractice/utils.dart';
@@ -14,6 +16,11 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   final preferences = await SharedPreferences.getInstance();
   final repository = PlaybackConfigRepository(preferences);
   ///////////////////////////////////////////////////////
