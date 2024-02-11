@@ -10,6 +10,7 @@ import 'package:tiktokclonepractice/features/videos/view_models/playback_config_
 import 'package:tiktokclonepractice/router.dart';
 import 'package:tiktokclonepractice/utils.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,16 +73,8 @@ class _TikTokAppState extends State<TikTokApp> {
       routerConfig: router,
       title: 'TikTokClonePractice',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale("en"),
-        Locale("ko"),
-        Locale("es"),
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       themeMode: isDarkMode(context) ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         primaryColor: const Color(0xFFE9435A),
