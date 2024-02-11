@@ -23,12 +23,19 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(videoCount) =>
       "Create a profile, follow otehr accounts, make your own ${Intl.plural(videoCount, zero: 'no videos', one: 'video', other: 'videos')}, and more.";
 
-  static String m1(gender) =>
+  static String m1(value) => "${value}";
+
+  static String m2(value, value2) =>
+      "${value} ${Intl.plural(value2, one: 'comment', other: 'comments')}";
+
+  static String m3(value) => "${value}";
+
+  static String m4(gender) =>
       "Login ${Intl.gender(gender, female: 'madam', male: 'sir', other: 'human')}";
 
-  static String m2(nameOfTheApp) => "Log into your ${nameOfTheApp} account";
+  static String m5(nameOfTheApp) => "Log into your ${nameOfTheApp} account";
 
-  static String m3(nameOfTheApp) => "Sign up for ${nameOfTheApp}";
+  static String m6(nameOfTheApp) => "Sign up for ${nameOfTheApp}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -37,10 +44,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "appleButton":
             MessageLookupByLibrary.simpleMessage("Continue with Apple"),
+        "commentCount": m1,
+        "commentTitle": m2,
         "emailPasswordButton":
             MessageLookupByLibrary.simpleMessage("Use email & password"),
-        "login": m1,
-        "loginTitle": m2,
-        "signUpTitle": m3
+        "likeCount": m3,
+        "login": m4,
+        "loginTitle": m5,
+        "signUpTitle": m6
       };
 }

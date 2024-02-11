@@ -8,6 +8,7 @@ import 'package:tiktokclonepractice/constants/sizes.dart';
 import 'package:tiktokclonepractice/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktokclonepractice/features/videos/views/widgets/video_button.dart';
 import 'package:tiktokclonepractice/features/videos/views/widgets/video_comments.dart';
+import 'package:tiktokclonepractice/generated/l10n.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -371,16 +372,16 @@ class VideoPostState extends ConsumerState<VideoPost>
                   child: Text("니꼬"),
                 ),
                 Gaps.v24,
-                const VideoButton(
+                VideoButton(
                   icon: FontAwesomeIcons.solidHeart,
-                  text: "2.9M",
+                  text: S.of(context).likeCount(987898797),
                 ),
                 Gaps.v24,
                 GestureDetector(
                   onTap: _onCommentsTap,
-                  child: const VideoButton(
+                  child: VideoButton(
                     icon: FontAwesomeIcons.solidComment,
-                    text: "33K",
+                    text: S.of(context).commentCount(4564564564132132),
                   ),
                 ),
                 Gaps.v24,

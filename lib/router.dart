@@ -13,7 +13,7 @@ import 'package:tiktokclonepractice/features/videos/views/video_recording_screen
 import 'package:tiktokclonepractice/features/videos/views/widgets/video_button.dart';
 
 final router = GoRouter(
-  initialLocation: RouteUrls.signupScreen,
+  initialLocation: RouteUrls.mainnavigationScreen,
   routes: [
     GoRoute(
       path: RouteUrls.signupScreen,
