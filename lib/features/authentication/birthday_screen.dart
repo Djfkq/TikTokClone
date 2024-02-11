@@ -28,9 +28,9 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> {
 
   void onNextTap(BuildContext context) {
     // print(ref.read(signUpForm));
-    ref.read(signUpProvider.notifier).signUp();
+    ref.read(signUpProvider.notifier).signUp(context);
 
-    context.goNamed(RouteNames.interestsScreen);
+    // context.goNamed(RouteNames.interestsScreen);
   }
 
   void _setTextFieldDate(DateTime date) {
