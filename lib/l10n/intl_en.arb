@@ -19,9 +19,9 @@
       }
     }
   },
-  "SignUpSubtitle": "Create a profile, follow otehr accounts, make your own videos, and more.",
+  "SignUpSubtitle": "Create a profile, follow otehr accounts, make your own {videoCount, plural, =0{no videos} =1{video} other{videos}}, and more.",
   "emailPasswordButton": "Use email & password",
   "appleButton": "Continue with Apple",
   "alreadyHaveAnAccount": "Already have an account?",
-  "login": "Login"
+  "login": "Login {gender, select, male{sir} female{madam} other{human}}"
 }

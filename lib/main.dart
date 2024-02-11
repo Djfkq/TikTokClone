@@ -69,6 +69,7 @@ class _TikTokAppState extends State<TikTokApp> {
     //   child: MaterialApp.router(),
     //   )
     ////////////////////////////////////////////////////
+    S.load(const Locale("en"));
     return MaterialApp.router(
       routerConfig: router,
       title: 'TikTokClonePractice',
